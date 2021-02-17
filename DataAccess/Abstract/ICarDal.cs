@@ -5,10 +5,10 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    interface ICarDal
+    public interface ICarDal
     {
-        void GetByID(Car car);
-        void GetAll(Car car);
+        List<Car> GetByID(Car car);
+        List<Car> GetAll();
         void Add(Car car);
         void Update(Car car);
         void Delete(Car car);
