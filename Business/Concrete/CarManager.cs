@@ -33,6 +33,11 @@ namespace Business.Concrete
             return _carDal.GetAll();
         }
 
+        public Car GetById()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update()
         {
             throw new NotImplementedException();
