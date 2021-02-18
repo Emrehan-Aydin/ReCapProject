@@ -20,7 +20,8 @@ namespace DataAccess.Concrete
         }
         public void Add(Car car)
         {
-            throw new NotImplementedException();
+            Cars.Add(car);
+            GetAll();
         }
 
         public void Delete(Car car)
@@ -31,6 +32,16 @@ namespace DataAccess.Concrete
         public List<Car> GetAll()
         {
             return Cars;
+        }
+
+        public List<Car> GetByBrandId(Car Entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> GetByColorID(Car Entity)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Car> GetByID(Car car)
