@@ -1,13 +1,14 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Abstract;
+using Entities.DTo;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Business.Concrete
 {
-    public class CarManager:ICarService
+    public class CarManager : ICarService
     {
         ICarDal _carDal;
 
@@ -16,43 +17,49 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car newcar)
+        public void add(Car car)
         {
-            if(newcar.Description.Length > 2 && newcar.DailyPrice>0)
+            if (car.Description.Length > 2 && car.DailyPrice > 0)
             {
-                _carDal.Add(newcar);
+                _carDal.Add(car);
             }
             else
             {
-                Console.WriteLine("Eklemeye çalıştığınız araç kriterleri uygun değil!");
+                Console.WriteLine("Ekleme çalıştığınız araç kriterleri uygun değil!");
             }
         }
 
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+        }
         public List<Car> GetAll()
         {
             return _carDal.GetAll();
         }
-
-        public Car GetById()
+        public List<Car> GetAllByBrandId(int BrandId)
         {
-            throw new NotImplementedException();
+            return _carDal.GetAll(c => c.BrandId == BrandId);
         }
 
-        public void Update()
+        public List<Car> GetAllByColorId(int ColorId)
         {
-            throw new NotImplementedException();
+            return _carDal.GetAll(c => c.ColorId == ColorId);
         }
 
-        public void Update(Car updated)
+        public List<Car> GetByDailyPrice(int min, int max)
         {
-            if (updated.Description.Length > 2 && updated.DailyPrice < 0)
-            {
-                _carDal.Update(updated);
-            }
-            else
-            {
-                Console.WriteLine("Güncelleştirmeye çalıştığınız araç kriterleri uygun değil!");
-            }
+            return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetail();
+        }
+
+        public void update(Car car)
+        {
+            _carDal.Update(car);
         }
     }
 }

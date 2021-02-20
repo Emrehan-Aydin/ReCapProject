@@ -1,17 +1,20 @@
 ﻿using DataAccess.Abstract;
 using Entities.Abstract;
+using Entities.DTo;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete
 {
     public class InMemoryCarDal : ICarDal
     {
-        List<Car> Cars;
+        List<Car> cars;
         public InMemoryCarDal()
         {
-            Cars = new List<Car> { 
+            cars = new List<Car> { 
                 new Car {Id=1,BrandId=2,ColorId=1,DailyPrice=124000,ModelYear=2012,Description="araba1" }, 
                 new Car {Id=2,BrandId=1,ColorId=2,DailyPrice=12000,ModelYear=1994,Description="Araba2" }, 
                 new Car {Id=3,BrandId=3,ColorId=0,DailyPrice=150000,ModelYear=2016,Description="Araba3" }, 
@@ -20,38 +23,37 @@ namespace DataAccess.Concrete
         }
         public void Add(Car car)
         {
-            Cars.Add(car);
-            GetAll();
+            cars.Add(car);
         }
 
         public void Delete(Car car)
         {
-            throw new NotImplementedException();
+            cars.Remove(cars.SingleOrDefault(c=>c.Id==car.Id));
         }
 
-        public List<Car> GetAll()
-        {
-            return Cars;
-        }
-
-        public List<Car> GetByBrandId(Car Entity)
+        public Car Get(Expression<Func<Car, bool>> filter)
         {
             throw new NotImplementedException();
         }
 
-        public List<Car> GetByColorID(Car Entity)
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
             throw new NotImplementedException();
         }
 
-        public List<Car> GetByID(Car car)
+        public List<CarDetailDto> GetCarDetail()
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Car car)
+        public void Update(Car Entity)
         {
-            throw new NotImplementedException();
+            Car UpdatedCar = cars.SingleOrDefault(c => c.Id == Entity.Id);
+            UpdatedCar.BrandId = Entity.BrandId;
+            UpdatedCar.ColorId = Entity.ColorId;
+            UpdatedCar.DailyPrice = Entity.DailyPrice;
+            UpdatedCar.Description = Entity.Description;
+            UpdatedCar.ModelYear = Entity.ModelYear;
         }
     }
 }
