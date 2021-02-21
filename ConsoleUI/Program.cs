@@ -20,6 +20,7 @@ namespace ConsoleUI
             //    Id = 5,
             //    ModelYear = 1999
             //});
+            carManager.add(new Car() { BrandId = 1, ColorId = 2, DailyPrice = 12001, Description = "araba11" });
             foreach (var item in carManager.GetCarDetails())
             {
                 Console.WriteLine("{0} - {1}\t {2}\t {3}\t {4}",item.Id,item.BrandName,item.ColorName,item.CarDailyInPrice,item.CarDescription);
