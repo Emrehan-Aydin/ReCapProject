@@ -42,7 +42,7 @@ namespace ConsoleUI
         private static void CarContextTest()
         {
             GalleryContext galerycontext = new GalleryContext();
-            foreach (var car in galerycontext.Car)
+            foreach (var car in galerycontext.Cars)
             {
                 Console.WriteLine(car.Description);
             }

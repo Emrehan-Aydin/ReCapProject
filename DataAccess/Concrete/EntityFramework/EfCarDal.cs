@@ -17,10 +17,10 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (GalleryContext galleryContext = new GalleryContext())
             {
-                var result = from c in galleryContext.Car
-                             join co in galleryContext.Color
+                var result = from c in galleryContext.Cars
+                             join co in galleryContext.Colors
                              on c.ColorId equals co.Id
-                             join b in galleryContext.Brand
+                             join b in galleryContext.Brands
                              on c.BrandId equals b.Id
                              select new CarDetailDto
                              {
