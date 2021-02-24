@@ -21,17 +21,19 @@ namespace ConsoleUI
             //    ModelYear = 1999
             //});
             carManager.add(new Car() { BrandId = 1, ColorId = 2, DailyPrice = 12001, Description = "araba11" });
-            foreach (var item in carManager.GetCarDetails())
+            foreach (var item in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine("{0} - {1}\t {2}\t {3}\t {4}",item.Id,item.BrandName,item.ColorName,item.CarDailyInPrice,item.CarDescription);
+
             }
+            Console.WriteLine(carManager.GetCarDetails().Message);
 
             // GetByDailyPrice(carManager);
         }
 
         private static void GetByDailyPrice(CarManager carManager)
         {
-            foreach (var car in carManager.GetByDailyPrice(57000, 100000))
+            foreach (var car in carManager.GetByDailyPrice(57000, 100000).Data)
             {
                 Console.WriteLine("{0} {1} {2} {3} {4}", car.Id, car.BrandId, car.ColorId, car.DailyPrice, car.Description);
             }
