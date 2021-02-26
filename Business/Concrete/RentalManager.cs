@@ -18,7 +18,7 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
-        public IResult add(Rental rental)
+        public IResult Add(Rental rental)
         {
             if (_rentalDal.Get(R => R.CarId == rental.CarId).ReturnDate != null)
             {
@@ -30,7 +30,7 @@ namespace Business.Concrete
                 return new SuccessResult(Messages.AddError);
             } 
         }
-        public IResult update(Rental rental)
+        public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.Updated);

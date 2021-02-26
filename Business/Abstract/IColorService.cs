@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    interface IColorService
+    public interface IColorService
     {
         IResult Add(Color color);
         IResult Update(Color Color);

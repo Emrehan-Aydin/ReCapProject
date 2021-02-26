@@ -23,7 +23,7 @@ namespace WebAPI
         [HttpPost("Add")]
         public IActionResult Add(Car car)
         {
-            var result = _carService.add(car);
+            var result = _carService.Add(car);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -43,7 +43,7 @@ namespace WebAPI
         [HttpPost("Update")]
         public IActionResult Update(Car car)
         {
-            var result = _carService.update(car);
+            var result = _carService.Update(car);
             if (result.Success)
             {
                 return Ok(result.Message);
